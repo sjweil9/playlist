@@ -1,6 +1,8 @@
 <h3><%= @user.first %> <%= @user.last %>'s Playlist</h3>
 
+<% if @recent != nil %>
 <p>Most recently listened to: <a href="<%= show_song_path(@recent.id) %>"><%= @recent.title %></a> by <%= @recent.artist %></p>
+<% end %>
 
 <% if @songs != nil %>
 

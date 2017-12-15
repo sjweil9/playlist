@@ -1,6 +1,8 @@
 <h3>Here's who else has been listening to "<%= @song.title %>" by <%= @song.artist %></h3>
 
+<% if @recent != nil %>
 <p>Most recently listened to by: <a href="<%= show_user_path(@recent.id) %>"><%= @recent.first %> <%= @recent.last %></a></p>
+<% end %>
 
 <% if @users.length > 0 %>
 <table class="table table-striped">

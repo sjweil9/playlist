@@ -22,7 +22,7 @@ class SongsController < ApplicationController
         @song = Song.find_by(id: params[:id])
         return redirect_to cheeky_path if @song == nil
         @users = User.joins(:added_songs).where.not(id: session[:user_id]).where("adds.song_id = #{params[:id]}").group("users.id").order("count(songs.id) DESC")
-        @recent = User.find_by(id: @song.add.last.user_id)
+        @recent = User.find_by(id: @song.add.last.user_id) if @song.add.last != nil
     end
 
     private
