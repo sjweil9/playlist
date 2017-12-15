@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BeltOne</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+        <% unless current_page? sign_in_path or current_page? cheeky_path or current_page? root_path %>
+            <div class="row justify-content-end">
+                <div class="col-md-4 header">
+                    <% unless current_page? songs_path %><a href="<%= songs_path %>">Dashboard</a> | <% end %><a href="<%= log_out_path %>" data-method="delete">Log Out</a>
+                </div>
+            </div>
+        <% end %>
+
+        <%= yield %>
+    </div>
+</body>
+</html>

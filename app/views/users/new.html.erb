@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-6">
+        <form action="<%= create_user_path %>" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="form-group row">
+                <label for="register_first" class="col-3 col-form-label">First Name:</label>
+                <div class="col-9">
+                    <input class="form-control" type="text" name="user[first]" id="register_first">
+                    <%= render "shared/errors", type: "first" %>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="register_last" class="col-3 col-form-label">Last Name:</label>
+                <div class="col-9">
+                    <input class="form-control" type="text" name="user[last]" id="register_last">
+                    <%= render "shared/errors", type: "last" %>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="register_email" class="col-3 col-form-label">Email:</label>
+                <div class="col-9">
+                    <input class="form-control" type="email" name="user[email]" id="register_email">
+                    <%= render "shared/errors", type: "email" %>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="register_password" class="col-3 col-form-label">Password:</label>
+                <div class="col-9">
+                    <input class="form-control" type="password" name="user[password]" id="register_password">
+                    <small>*Password must contain at least one uppercase, one lowercase, one number, and one special character.</small>
+                    <%= render "shared/errors", type: "password" %>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="register_confirm_pw" class="col-3 col-form-label">Confirm PW:</label>
+                <div class="col-9">
+                    <input class="form-control" type="password" name="user[password_confirmation]" id="register_confirm_pw">
+                    <%= render "shared/errors", type: "password_confirmation" %>
+                </div>
+            </div>
+            <div class="form-group row justify-content-end">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <form action="<%= log_in_path %>" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="form-group row">
+                <label for="log_in_email" class="col-3 col-form-label">Email:</label>
+                <div class="col-9">
+                    <input class="form-control" type="email" name="email" id="log_in_email">
+                    <%= render "shared/errors", type: "log_in_email" %>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="log_in_password" class="col-3 col-form-label">Password:</label>
+                <div class="col-9">
+                    <input class="form-control" type="password" name="password" id="log_in_password">
+                    <%= render "shared/errors", type: "log_in_password" %>
+                </div>                
+            </div>
+            <div class="form-group row justify-content-end">
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </div>
+        </form>
+    </div>
+</div>

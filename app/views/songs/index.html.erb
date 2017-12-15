@@ -1,0 +1,49 @@
+<h1>Hello, <%= @user.first %> <%= @user.last %>!</h1>
+
+<h3>Feel like jamming out? Check out all our sweet tunes:</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Artist</th>
+            <th>Title</th>
+            <th>Times Added</th>
+            <th>Add to Your Playlist</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @songs.each do |song| %>
+        <tr>
+            <td><%= song.artist %></td>
+            <td><a href="<%= show_song_path(song.id) %>"><%= song.title %></a></td>
+            <td><%= song.users.count %></td>
+            <td><a class="btn btn-success" href="<%= create_add_path(song.id) %>" data-method="post">Add</a></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<h3><a href="<%= show_user_path(@user.id) %>">Want to check out your own playlist?</a></h3>
+
+<h3>Nothing here tickles your fancy? Fine, show us some "actual" music then:</h3>
+
+<form action="<%= create_song_path %>" method="post" class="col-md-6">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div class="form-group row">
+        <label for="song_title" class="col-3 col-form-label">Title:</label>
+        <div class="col-9">
+            <input class="form-control" type="text" name="song[title]" id="song_title">
+            <%= render "shared/errors", type: "title" %>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="song_artist" class="col-3 col-form-label">Artist:</label>
+        <div class="col-9">
+            <input class="form-control" type="text" name="song[artist]" id="song_artist">
+            <%= render "shared/errors", type: "artist" %>
+        </div>
+    </div>
+    <div class="form-group row justify-content-end">
+        <button type="submit" class="btn btn-primary">Add Song</button>
+    </div>
+</form>

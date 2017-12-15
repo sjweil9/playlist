@@ -1,0 +1,27 @@
+<h3>Here's who else has been listening to "<%= @song.title %>" by <%= @song.artist %></h3>
+
+<p>Most recently listened to by: <a href="<%= show_user_path(@recent.id) %>"><%= @recent.first %> <%= @recent.last %></a></p>
+
+<% if @users.length > 0 %>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Times Added</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.each do |user| %>
+        <tr>
+            <td><a href="<%= show_user_path(user.id) %>"><%= user.first %> <%= user.last %></a></td>
+            <td><%= user.added_songs.reject { |s| s.id != @song.id }.count %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<% else %>
+
+<p>Seems like nobody else likes this one... or maybe your taste just sucks</p>
+
+<% end %>
